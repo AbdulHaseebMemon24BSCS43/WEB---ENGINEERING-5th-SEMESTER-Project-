@@ -23,7 +23,7 @@
 
 
 # Tech Stack
-##Requirement/ Planning
+## Requirement/ Planning
 - Group Discussion Task (GDT)
 - Ideas - Brain Storming
 
