@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoorApp — Your Daily Islamic Companion</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">نور <span>NoorApp</span></div>
+  <button class="nav-btn active"  onclick="showSection('home')">Home</button>
+  <button class="nav-btn"         onclick="showSection('quran')">Quran</button>
+  <button class="nav-btn"         onclick="showSection('prayer')">Prayer</button>
+  <button class="nav-btn"         onclick="showSection('dua')">Dua</button>
+  <button class="nav-btn"         onclick="showSection('tasbeeh')">Tasbeeh</button>
+  <button class="nav-btn"         onclick="showSection('zakat')">Zakat</button>
+  <button class="nav-btn"         onclick="showSection('qibla')">Qibla</button>
+  <button class="nav-btn"         onclick="showSection('hadith')">Hadith</button>
+  <button class="nav-btn"         onclick="showSection('calendar')">Calendar</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════════ -->
+<div id="section-home" class="section active" style="max-width:100%;padding:0;">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1>Your Daily <em>Islamic</em><br>Companion</h1>
+    <p class="hero-sub">Prayer times, Quran, Duas, Tasbeeh, Zakat calculator, Qibla direction — all in one place.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showSection('quran')">Open Quran</button>
+      <button class="btn-outline" onclick="showSection('prayer')">Prayer Times</button>
+    </div>
+  </section>
+
+  <!-- Prayer strip on home -->
+  <div class="prayer-strip" id="home-prayer-strip">
+    <div class="loader">
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <div class="loader-dot"></div>
+      <span>Loading prayer times…</span>
+    </div>
+  </div>
+
+  <!-- Ayah of the Day + Feature Cards -->
+  <div style="padding:3rem 2rem;max-width:1100px;margin:0 auto;">
+    <div id="ayah-of-day"></div>
+
+    <div style="margin-top:3rem;">
+      <div style="margin-bottom:1.5rem;font-family:var(--arabic);font-size:1.8rem;color:var(--text);">Features</div>
+      <div class="grid-3">
+        <div class="card" style="cursor:pointer" onclick="showSection('quran')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">📖</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Quran Reader</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Full Quran with Arabic text, English translation, and audio recitation</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('prayer')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">🕌</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Prayer Times</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Accurate prayer times for any city in the world</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('dua')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">🤲</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Dua Library</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Duas for morning, evening, sleeping, eating and more</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('tasbeeh')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">📿</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Tasbeeh Counter</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Digital tasbih for dhikr and counting remembrance</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('zakat')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">💰</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Zakat Calculator</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Calculate your annual Zakat obligation easily</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('qibla')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">🧭</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Qibla Finder</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Find the direction of Makkah from anywhere</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('hadith')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">📜</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Hadith</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Explore hadiths from Bukhari, Muslim, and more</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="showSection('calendar')">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">🗓️</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Islamic Calendar</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Hijri date and upcoming Islamic events</div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem;">🌙</div>
+          <div style="font-weight:600;color:var(--text);margin-bottom:0.4rem;">Ramadan Tracker</div>
+          <div style="color:var(--text-muted);font-size:0.9rem;">Track fasting days, Sehri &amp; Iftar times</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     QURAN
+══════════════════════════════════════════════════ -->
+<div id="section-quran" class="section">
+  <div class="section-title">القرآن الكريم</div>
+  <div class="section-sub">The Holy Quran — Arabic text with translation</div>
+
+  <div class="quran-controls">
+    <select class="q-select" id="surah-select" onchange="loadSurah()">
+      <option value="">— Select Surah —</option>
+    </select>
+    <button class="q-btn" onclick="prevSurah()">← Prev</button>
+    <button class="q-btn" onclick="nextSurah()">Next →</button>
+    <select class="q-select" id="lang-select" onchange="changeLanguage()" style="width:auto;min-width:120px;">
+      <option value="en">English</option>
+      <option value="ur">اردو</option>
+    </select>
+    <button class="q-btn active-btn" id="show-translation-btn" onclick="toggleTranslation()">Translation ✓</button>
+    <button class="q-btn" onclick="randomAyah()">✨ Random Ayah</button>
+  </div>
+
+  <input type="text" class="search-box" id="quran-search" placeholder="Search in Quran..." oninput="searchQuran()" />
+
+  <div id="quran-content">
+    <div class="loader">
+      <div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div>
+      <span>Loading Surahs…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PRAYER TIMES
+══════════════════════════════════════════════════ -->
+<div id="section-prayer" class="section">
+  <div class="section-title">Prayer Times</div>
+  <div class="section-sub">Daily Salah times for your location</div>
+
+  <div class="location-bar">
+    <input type="text" class="loc-input" id="city-input" placeholder="Enter city (e.g. Karachi, Lahore, Dubai…)" value="Karachi" />
+    <select class="q-select" id="method-select" style="max-width:220px;">
+      <option value="1">University of Islamic Sciences, Karachi</option>
+      <option value="2">Islamic Society of North America</option>
+      <option value="3">Muslim World League</option>
+      <option value="4">Umm Al-Qura University, Makkah</option>
+      <option value="5">Egyptian General Authority of Survey</option>
+    </select>
+    <button class="btn-primary" onclick="loadPrayerTimes()">Get Times</button>
+  </div>
+
+  <div id="prayer-content">
+    <div class="loader">
+      <div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div>
+      <span>Fetching prayer times…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DUA
+══════════════════════════════════════════════════ -->
+<div id="section-dua" class="section">
+  <div class="section-title">Dua Library</div>
+  <div class="section-sub">Authentic duas from Quran and Sunnah</div>
+  <div class="dua-categories" id="dua-cats"></div>
+  <div id="dua-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     TASBEEH
+══════════════════════════════════════════════════ -->
+<div id="section-tasbeeh" class="section">
+  <div class="section-title">تسبیح</div>
+  <div class="section-sub">Digital Tasbeeh Counter</div>
+  <div class="tasbeeh-container">
+    <div class="tasbeeh-phrase-select" id="tasbeeh-phrases"></div>
+
+    <div class="tasbeeh-circle" id="tasbeeh-btn" onclick="incrementTasbeeh(event)">
+      <div class="tasbeeh-count" id="tasbeeh-count">0</div>
+      <div class="tasbeeh-label" id="tasbeeh-active-label">سُبْحَانَ اللَّهِ</div>
+    </div>
+
+    <div style="font-family:var(--mono);font-size:0.85rem;color:var(--text-muted);">
+      Target: <span id="tasbeeh-target">33</span> · Set: <span id="tasbeeh-sets">0</span>
+    </div>
+
+    <div class="tasbeeh-btns">
+      <button class="q-btn" onclick="resetTasbeeh()">Reset</button>
+      <select class="q-select" style="width:auto;" id="target-select" onchange="changeTarget()">
+        <option value="33">33 ×</option>
+        <option value="99">99 ×</option>
+        <option value="100">100 ×</option>
+        <option value="1000">1000 ×</option>
+      </select>
+    </div>
+
+    <div style="font-family:var(--arabic);font-size:1.4rem;color:var(--gold);text-align:center;max-width:400px;direction:rtl;line-height:2;" id="tasbeeh-full-text">
+      سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ
+    </div>
+    <div style="color:var(--text-muted);font-size:0.9rem;text-align:center;max-width:400px;font-style:italic;" id="tasbeeh-meaning">
+      "Glory be to Allah and His is the praise, Glory be to Allah the Most Great"
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     ZAKAT
+══════════════════════════════════════════════════ -->
+<div id="section-zakat" class="section">
+  <div class="section-title">Zakat Calculator</div>
+  <div class="section-sub">Calculate your obligatory annual Zakat (2.5% of savings above Nisab)</div>
+
+  <div class="zakat-form">
+    <div class="form-group">
+      <label>Cash &amp; Bank Savings (PKR)</label>
+      <input type="number" id="z-cash" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="form-group">
+      <label>Gold Value (PKR)</label>
+      <input type="number" id="z-gold" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="form-group">
+      <label>Silver Value (PKR)</label>
+      <input type="number" id="z-silver" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="form-group">
+      <label>Business Inventory (PKR)</label>
+      <input type="number" id="z-business" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="form-group">
+      <label>Investments / Stocks (PKR)</label>
+      <input type="number" id="z-invest" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="form-group">
+      <label>Outstanding Debts Owed TO You (PKR)</label>
+      <input type="number" id="z-debts-in" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="form-group">
+      <label>Debts You OWE (deducted) (PKR)</label>
+      <input type="number" id="z-debts-out" placeholder="0" oninput="calcZakat()" min="0">
+    </div>
+    <div class="zakat-result" id="zakat-result">
+      <div style="color:var(--text-muted);font-size:0.85rem;margin-bottom:6px;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.1em;">Your Zakat Due</div>
+      <div class="zakat-amount" id="zakat-amount">PKR 0</div>
+      <div class="zakat-nisab" id="zakat-nisab-msg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     QIBLA
+══════════════════════════════════════════════════ -->
+<div id="section-qibla" class="section">
+  <div class="section-title">Qibla Direction</div>
+  <div class="section-sub">Direction toward the Kaaba in Makkah al-Mukarramah</div>
+  <div class="qibla-container">
+    <button class="btn-primary" onclick="findQibla()">📍 Use My Location</button>
+    <div class="compass-wrap">
+      <div class="compass-outer">
+        <div class="compass-labels">
+          <span class="c-n">N</span>
+          <span class="c-s">S</span>
+          <span class="c-e">E</span>
+          <span class="c-w">W</span>
+        </div>
+        <div class="compass-needle" id="qibla-needle">
+          <svg width="4" height="90" viewBox="0 0 4 90">
+            <polygon points="2,0 4,45 2,50 0,45" fill="#ef4444"/>
+            <polygon points="2,50 4,45 2,90 0,45" fill="#4ade80"/>
+          </svg>
+        </div>
+        <div style="font-size:1.2rem;position:absolute;">🕋</div>
+      </div>
+    </div>
+    <div id="qibla-info" style="text-align:center;">
+      <div style="color:var(--text-muted);font-size:0.9rem;">Click the button above to find your Qibla direction</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     HADITH
+══════════════════════════════════════════════════ -->
+<div id="section-hadith" class="section">
+  <div class="section-title">Hadith Collection</div>
+  <div class="section-sub">Sayings and traditions of the Prophet ﷺ</div>
+
+  <div class="quran-controls" style="margin-bottom:1.5rem;">
+    <select class="q-select" id="hadith-collection" onchange="loadHadith()" style="max-width:300px;">
+      <option value="bukhari">Sahih al-Bukhari</option>
+      <option value="muslim">Sahih Muslim</option>
+      <option value="abudawud">Sunan Abu Dawud</option>
+      <option value="tirmidhi">Jami at-Tirmidhi</option>
+      <option value="nasai">Sunan an-Nasai</option>
+      <option value="ibnmajah">Sunan Ibn Majah</option>
+    </select>
+    <input
+      type="number"
+      id="hadith-num"
+      placeholder="Hadith #"
+      style="background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:1rem;padding:8px 14px;width:120px;"
+      value="1"
+      min="1"
+    />
+    <button class="btn-primary" onclick="loadHadith()">Load</button>
+    <button class="q-btn" onclick="randomHadith()">🎲 Random</button>
+  </div>
+
+  <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+    <button class="q-btn active-btn" onclick="setHadithLang('en')">English</button>
+    <button class="q-btn" onclick="setHadithLang('ur')">اردو / Urdu</button>
+  </div>
+
+  <div id="hadith-content">
+    <div class="loader">
+      <div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div>
+      <span>Loading hadith…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     CALENDAR
+══════════════════════════════════════════════════ -->
+<div id="section-calendar" class="section">
+  <div class="section-title">Islamic Calendar</div>
+  <div class="section-sub">Hijri date and upcoming Islamic events</div>
+  <div id="calendar-content">
+    <div class="loader">
+      <div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div>
+      <span>Loading calendar…</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SCRIPTS (order matters)
+══════════════════════════════════════════════════ -->
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/prayer.js"></script>
+<script src="js/quran.js"></script>
+<script src="js/features.js"></script>
+
+</body>
+</html>
