@@ -41,4 +41,6 @@
 ## Evaluation & Release
 - Local host
 
-
+## Git Command to run on your System
+git clone https://github.com/AbdulHaseebMemon24BSCS43/WEB---ENGINEERING-5th-SEMESTER-Project-.git
+cd WEB---ENGINEERING-5th-SEMESTER-Project-
